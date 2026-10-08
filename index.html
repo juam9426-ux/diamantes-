@@ -644,7 +644,8 @@ function buildCheckout(){
   '*{margin:0;padding:0;box-sizing:border-box}body{background:#1B1B25;color:rgba(255,255,255,.85);font:14px/1.5 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;min-height:100vh}'+
   'header{background:#272731;border-bottom:1px solid rgba(255,255,255,.1);height:56px;display:flex;align-items:center;padding:0 16px}'+
   'header b{color:#E41E26;font-weight:500;font-size:17px;margin-right:10px}header span{color:#fff;font-weight:600;border-left:1px solid rgba(255,255,255,.25);padding-left:10px}'+
-  '.wrap{max-width:850px;margin:0 auto;padding:32px 16px}h1{font-size:19px;color:rgba(255,255,255,.9);margin-bottom:16px}'+
+  '.wrap{max-width:850px;margin:0 auto;padding:20px 16px 32px}h1{font-size:19px;color:rgba(255,255,255,.9);margin-bottom:16px}'+
+  '.who{display:inline-flex;align-items:center;gap:6px;background:#272731;border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:3px 10px 3px 3px;margin-bottom:18px;font-size:12px;color:#fff;font-weight:600;max-width:100%}.who img{width:22px;height:22px;border-radius:50%;background:#fff;object-fit:cover;flex-shrink:0}.who span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}'+
   '.card{max-width:464px;background:#272731;border-radius:6px;padding:16px;margin-bottom:20px}'+
   '.acc{display:flex;align-items:center;gap:12px}.acc img{width:36px;height:36px;border-radius:50%;background:#fff}.acc b{display:block;color:#fff}.acc small{color:rgba(255,255,255,.6)}'+
   '.row{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08)}.row:last-child{border:0}.row span:first-child{color:rgba(255,255,255,.6)}.row span:last-child{color:#fff;font-weight:600;text-align:right}'+
@@ -653,8 +654,9 @@ function buildCheckout(){
   '.pay{background:#E4372E;color:#fff}.pay:hover{background:#CD1214}.back{background:transparent;color:#fff;border-color:rgba(255,255,255,.3)}'+
   '.note{max-width:464px;margin-top:16px;font-size:12px;color:rgba(255,255,255,.5)}'+
   '</style></head><body><header><b>Garena</b><span>Centro Oficial de Recargas</span></header><div class="wrap">'+
+  '<div class="who" title="Jugador"><img src="'+GAME_ICON+'" alt=""><span>'+esc(state.user)+'</span></div>'+
   '<h1>Confirmar compra</h1>'+
-  '<div class="card"><div class="acc"><img src="'+GAME_ICON+'" alt=""><div><b>Free Fire</b><small>'+esc(state.user)+' · ID '+esc(state.id)+'</small></div></div></div>'+
+  '<div class="card"><div class="acc"><img src="'+GAME_ICON+'" alt=""><div><b>Free Fire</b><small>ID de jugador: '+esc(state.id)+'</small></div></div></div>'+
   '<div class="card">'+
     '<div class="row"><span>Producto</span><span>'+esc(product)+'</span></div>'+
     '<div class="row"><span>Método de pago</span><span>'+esc(state.pm)+'</span></div>'+
