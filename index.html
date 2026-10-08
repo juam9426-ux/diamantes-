@@ -219,6 +219,23 @@ footer{background:#272731;border-top:1px solid #11111C;padding:32px 20px;text-al
   .payment-method img{width:44px;height:44px}
   .bar-popover{width:min(320px,86vw)}
 }
+
+/* Ventanas emergentes */
+.modal{position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto}
+.modal-event{position:relative;width:min(440px,100%)}
+.modal-event a{display:block}
+.modal-event img{width:100%;display:block}
+.modal-close{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;border:1px solid #fff;background:rgba(0,0,0,.8);color:#fff;font-size:16px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.modal-close:hover{background:#000}
+.modal-confirm{width:min(288px,100%);background:#272731;border-radius:8px;padding:20px 16px 16px;text-align:center;box-shadow:0 9px 28px 8px rgba(0,0,0,.35)}
+.modal-confirm h4{font-size:14px;font-weight:700;color:#fff;margin-bottom:12px}
+.modal-confirm p{font-size:12px;line-height:1.5;color:rgba(255,255,255,.85);margin:0 14px 20px}
+.modal-actions{display:flex;gap:12px}
+.modal-actions button{flex:1;height:38px;border-radius:4px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid #E4372E}
+.btn-cancel{background:transparent;color:#E4372E}
+.btn-cancel:hover{background:rgba(228,55,46,.12)}
+.btn-exit{background:#E4372E;color:#fff}
+.btn-exit:hover{background:#CD1214}
 </style>
 </head>
 <body>
@@ -438,6 +455,24 @@ footer{background:#272731;border-top:1px solid #11111C;padding:32px 20px;text-al
   </div>
 </div>
 
+<div class="modal" id="eventModal" hidden>
+  <div class="modal-event">
+    <a href="https://pagostore.garena.com/event/6?app=100067" target="_blank" rel="noopener"><img src="https://cdn-gop.garenanow.com/gop/app/0000/100/067/event/0000/000/255/popup.png" alt="Nuevo conjunto en Ruleta de la Suerte"></a>
+    <button type="button" class="modal-close" id="eventClose" aria-label="Cerrar">✕</button>
+  </div>
+</div>
+
+<div class="modal" id="logoutModal" hidden>
+  <div class="modal-confirm" role="dialog" aria-modal="true" aria-labelledby="logoutTitle">
+    <h4 id="logoutTitle">¿No es tu cuenta?</h4>
+    <p>Por favor cierra sesión e inicia sesión con una nueva cuenta</p>
+    <div class="modal-actions">
+      <button type="button" class="btn-cancel" id="logoutCancel">Cancelar</button>
+      <button type="button" class="btn-exit" id="logoutConfirm">Salir</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast" hidden></div>
 
 <footer>
@@ -570,6 +605,7 @@ function login(){
   $('loginSection').hidden = true;
   $('accountSection').hidden = false;
   avatar.innerHTML = '<img src="'+GAME_ICON+'" alt="Avatar">';
+  $('eventModal').hidden = false;
 }
 function logout(){
   state.logged = false; state.id = ''; state.user = '';
@@ -580,7 +616,17 @@ function logout(){
 }
 $('loginBtn').addEventListener('click', login);
 $('playerId').addEventListener('keydown', e=>{ if (e.key==='Enter') login(); });
-$('logoutBtn').addEventListener('click', logout);
+$('logoutBtn').addEventListener('click', ()=>{ $('logoutModal').hidden = false; });
+$('logoutCancel').addEventListener('click', ()=>{ $('logoutModal').hidden = true; });
+$('logoutConfirm').addEventListener('click', ()=>{ $('logoutModal').hidden = true; logout(); });
+$('eventClose').addEventListener('click', ()=>{ $('eventModal').hidden = true; });
+/* Cerrar al tocar el fondo oscuro o con Escape */
+['eventModal','logoutModal'].forEach(id=>{
+  $(id).addEventListener('click', e=>{ if (e.target.id === id) $(id).hidden = true; });
+});
+document.addEventListener('keydown', e=>{
+  if (e.key === 'Escape'){ $('eventModal').hidden = true; $('logoutModal').hidden = true; }
+});
 
 /* ===== Aviso ===== */
 let toastTimer;
