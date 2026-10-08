@@ -75,7 +75,7 @@ header{
 .game-icon img{width:100%;height:100%;object-fit:cover}
 .game-name{font-size:16.1px;color:rgba(255,255,255,.6)}
 .game-name.active{color:#E9423A;font-weight:bold}
-.main{max-width:1200px;margin:0 auto;padding:46px 23px 120px 23px}
+.main{max-width:1200px;margin:0 auto;padding:46px 23px 100px 23px}
 
 /* ===== Sección Free Fire / Pago 100% seguro ===== */
 .app-banner{
@@ -185,22 +185,23 @@ header{
 .bottom-bar{
   position:fixed;bottom:0;left:0;right:0;z-index:15;
   background:#1B1B25;border-top:1.15px solid rgba(255,255,255,.1);
-  padding:16.1px 23px;
+  padding:12px 20px;
   display:flex;
-  align-items:center;justify-content:space-between;gap:18.4px;flex-wrap:wrap;
+  flex-direction:column;
+  align-items:flex-start;justify-content:flex-start;gap:10px;
   transform:translateY(100%);transition:transform .3s ease;
 }
 .bottom-bar.show{transform:translateY(0)}
-.bottom-bar-total{display:flex;align-items:center;gap:9.2px;font-weight:bold;color:#fff}
-.bottom-bar-total img{width:20.7px;height:20.7px}
-.bottom-bar-total .bonus{color:#FF7A00;font-size:14.95px}
+.bottom-bar-total{display:flex;align-items:center;gap:8px;font-weight:bold;color:#fff;font-size:15px}
+.bottom-bar-total img{width:18px;height:18px}
+.bottom-bar-total .bonus{color:#FF7A00;font-size:13px}
 .buy-now-btn{
-  background:#E4372E;color:#fff;border:none;padding:13.8px 32.2px;border-radius:6.9px;
-  font-weight:bold;cursor:pointer;font-size:17.25px;transition:background .2s;
-  display:flex;align-items:center;gap:9.2px;
+  background:#E4372E;color:#fff;border:none;padding:11px 26px;border-radius:6px;
+  font-weight:bold;cursor:pointer;font-size:15px;transition:background .2s;
+  display:flex;align-items:center;gap:8px;width:100%;justify-content:center;
 }
 .buy-now-btn:hover{background:#CD1214}
-.buy-now-btn svg{width:20.7px;height:20.7px}
+.buy-now-btn svg{width:18px;height:18px}
 @media (max-width:600px){
   .bottom-bar{padding:13.8px 18.4px}
   .buy-now-btn{padding:11.5px 20.7px;font-size:16.1px}
