@@ -167,6 +167,58 @@ footer{background:#272731;border-top:1px solid #11111C;padding:32px 20px;text-al
   .app-icon{width:56px;height:56px}
   .bottom-inner{justify-content:space-between;gap:12px}
 }
+
+[hidden]{display:none !important}
+/* Cuenta (sesión iniciada) */
+.logout-btn{margin-left:auto;background:none;border:none;color:rgba(255,255,255,.7);font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:4px}
+.logout-btn:hover{opacity:.7}
+.account-card{display:flex;align-items:center;gap:12px;background:#272731;border-radius:6px;padding:12px}
+.account-card img{width:36px;height:36px;border-radius:50%;background:#fff;object-fit:cover;flex-shrink:0}
+.acc-name{font-size:14px;font-weight:700;color:#fff;line-height:1.3}
+.acc-id{margin-top:6px;font-size:12px;color:rgba(255,255,255,.6);line-height:1}
+.field-error{margin-top:8px;font-size:12px;color:#FF6B63}
+.avatar img{width:100%;height:100%;object-fit:cover;background:#fff;display:block}
+
+/* Métodos de pago: icono a la izquierda, precio y diamantes a la derecha */
+.payment-methods{grid-template-columns:repeat(3,1fr)}
+.payment-method{display:flex;align-items:center;gap:10px;padding:12px;min-height:80px;text-align:left}
+.payment-method img{margin:0;flex-shrink:0}
+.payment-method.selected{background:#2F232C;border:1px solid #E4372E}
+.pm-text{min-width:0;padding-top:4px}
+.pm-price{font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;white-space:nowrap}
+.pm-price:empty{display:none}
+.pm-dia{display:flex;align-items:center;gap:4px;font-size:12px;color:#fff}
+.pm-dia:empty{display:none}
+.pm-dia img{width:12px;height:12px}
+.pm-dia .bonus,.bar-line .bonus{color:#FF7A00}
+.payment-method-name{font-size:12px;font-weight:500;color:rgba(255,255,255,.65);margin-top:4px}
+.payment-method-name:first-child{font-size:13px;font-weight:600;color:#fff}
+
+/* Barra inferior con detalle */
+.bar-info{position:relative}
+.bar-line{display:flex;align-items:center;justify-content:flex-end;gap:5px;font-size:14px;font-weight:700;color:#fff}
+.bar-line img{width:16px;height:16px}
+.bar-toggle{background:rgba(255,255,255,.1);border:none;color:rgba(255,255,255,.8);width:18px;height:18px;border-radius:50%;cursor:pointer;font-size:12px;line-height:18px;padding:0}
+.bar-total{margin-top:6px;font-size:13px;color:#fff}
+.bar-popover{position:absolute;right:0;bottom:calc(100% + 24px);width:320px;background:#2B2B36;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:14px;text-align:left;z-index:30;box-shadow:0 9px 28px 8px rgba(0,0,0,.25)}
+.pop-head,.pop-row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.pop-head{font-size:14px;font-weight:700;color:#fff;margin-bottom:10px}
+.pop-list{background:#232330;border:1px solid rgba(255,255,255,.08);border-radius:5px;padding:10px;display:flex;flex-direction:column;gap:10px;font-size:12px;color:rgba(255,255,255,.85)}
+.pop-row b{display:inline-flex;align-items:center;gap:4px;font-weight:500}
+.pop-row img,.pop-head img{width:12px;height:12px}
+.pop-head span{display:inline-flex;align-items:center;gap:5px}
+
+/* Aviso */
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#2B2B36;color:#fff;border:1px solid #E4372E;padding:10px 16px;border-radius:6px;font-size:13px;z-index:60;max-width:90vw;box-shadow:0 6px 20px rgba(0,0,0,.4)}
+.checkout-overlay{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;padding:16px}
+.checkout-overlay iframe{width:100%;max-width:980px;height:92vh;border:0;border-radius:8px;background:#1B1B25}
+.checkout-overlay button{position:absolute;top:14px;right:18px;background:#000a;border:1px solid #fff;color:#fff;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:16px}
+@media (max-width:640px){
+  .payment-methods{grid-template-columns:repeat(2,1fr);gap:10px}
+  .payment-method{padding:10px}
+  .payment-method img{width:44px;height:44px}
+  .bar-popover{width:min(320px,86vw)}
+}
 </style>
 </head>
 <body>
@@ -191,7 +243,7 @@ footer{background:#272731;border-top:1px solid #11111C;padding:32px 20px;text-al
       <span class="sw-lang">ES</span>
       <svg class="sw-chevron" viewBox="0 0 12 12" fill="none"><path d="M8.86 3H3.14C2.29 3 1.82 3.99 2.37 4.64l2.86 3.44c.4.48 1.14.48 1.54 0l2.86-3.44C10.18 3.99 9.71 3 8.86 3Z" fill="currentColor"/></svg>
     </div>
-    <div class="avatar">
+    <div class="avatar" id="avatar">
       <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Avatar">
         <circle cx="40" cy="40" r="40" fill="#606074"/>
         <circle cx="40" cy="25.6694" r="14" fill="#8E8EA0"/>
@@ -257,17 +309,26 @@ footer{background:#272731;border-top:1px solid #11111C;padding:32px 20px;text-al
           <p>¡LA RULETA DE LA SUERTE REGRESÓ! No olvides iniciar sesión diariamente para recibir un giro GRATIS!</p>
         </div>
 
-        <div class="section half">
+        <div class="section half" id="accountSection" hidden>
+          <div class="section-title"><div class="section-number">1</div>Cuenta<button type="button" class="logout-btn" id="logoutBtn">Salir</button></div>
+          <div class="account-card">
+            <img src="https://cdn-gop.garenanow.com/gop/app/0000/100/067/icon.png" alt="Free Fire">
+            <div><div class="acc-name" id="accName"></div><div class="acc-id" id="accId"></div></div>
+          </div>
+        </div>
+
+        <div class="section half" id="loginSection">
           <div class="section-title"><div class="section-number">1</div>Ingresar</div>
           <div class="login-box">
             <label class="form-label">ID de jugador <span class="help-icon">?</span></label>
             <div class="input-row">
               <div class="input-wrap">
-                <input type="text" class="form-input" placeholder="Introduce el ID del jugador aquí.">
+                <input type="text" id="playerId" inputmode="numeric" autocomplete="off" class="form-input" placeholder="Introduce el ID del jugador aquí.">
                 <button class="chevron-btn" aria-label="Historial">⌄</button>
               </div>
-              <button class="button">Iniciar Sesión</button>
+              <button class="button" id="loginBtn" type="button">Iniciar Sesión</button>
             </div>
+            <div class="field-error" id="idError" hidden></div>
             <div class="divider-text">O ingresa con una cuenta</div>
             <div class="social-row">
               <div class="social-btn" style="background:#006AFC" title="Facebook">
@@ -317,36 +378,42 @@ footer{background:#272731;border-top:1px solid #11111C;padding:32px 20px;text-al
 
       <!-- Columna derecha -->
       <div class="col">
-        <div class="section">
+        <div class="section" id="paymentSection">
           <div class="section-title"><div class="section-number">3</div>Método de pago</div>
           <div class="payment-note">
             <svg viewBox="0 0 80 80" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M9 18C9 11.92 13.92 7 20 7H60C66.08 7 71 11.92 71 18V62C71 68.08 66.08 73 60 73H20C13.92 73 9 68.08 9 62V18ZM20 13C17.24 13 15 15.24 15 18V62C15 64.76 17.24 67 20 67H60C62.76 67 65 64.76 65 62V18C65 15.24 62.76 13 60 13H20ZM23 31C23 29.34 24.34 28 26 28H54C55.66 28 57 29.34 57 31C57 32.66 55.66 34 54 34H26C24.34 34 23 32.66 23 31ZM26 46C24.34 46 23 47.34 23 49C23 50.66 24.34 52 26 52H42C43.66 52 45 50.66 45 49C45 47.34 43.66 46 42 46H26Z"/></svg>
             Puedes usar tu tarjeta de crédito o tu cuenta de PayPal para recargar
           </div>
-          <div class="payment-methods">
-            <div class="payment-method">
+          <div class="payment-methods" id="paymentMethods">
+            <div class="payment-method" data-name="Nequi" tabindex="0">
               <div class="tag-corner"><span class="tag-promo"><img src="https://cdn-gop.garenanow.com/gop/app/0000/100/067/point.png" alt="">PROMO</span><span class="tag-popular">Popular</span></div>
-              <img src="https://cdn-gop.garenanow.com/webmain/static/payment_center/co/menu/ebanx_co_ewallet_mb_1.png" alt="Nequi"><div class="payment-method-name">Nequi</div>
+              <img src="https://cdn-gop.garenanow.com/webmain/static/payment_center/co/menu/ebanx_co_ewallet_mb_1.png" alt="Nequi">
+              <div class="pm-text"><div class="pm-price"></div><div class="pm-dia"></div><div class="payment-method-name">Nequi</div></div>
             </div>
-            <div class="payment-method">
+            <div class="payment-method" data-name="Tarjeta de Crédito o Débito" tabindex="0">
               <div class="tag-corner"><span class="tag-promo"><img src="https://cdn-gop.garenanow.com/gop/app/0000/100/067/point.png" alt="">PROMO</span></div>
-              <img src="https://cdn-gop.garenanow.com/webmain/static/payment_center/pe/pe_boa_creditcard_mb.png" alt="Tarjeta"><div class="payment-method-name">Tarjeta de Crédito o Débito</div>
+              <img src="https://cdn-gop.garenanow.com/webmain/static/payment_center/pe/pe_boa_creditcard_mb.png" alt="Tarjeta de Crédito o Débito">
+              <div class="pm-text"><div class="pm-price"></div><div class="pm-dia"></div><div class="payment-method-name">Tarjeta de Crédito o Débito</div></div>
             </div>
-            <div class="payment-method">
+            <div class="payment-method" data-name="Efectivo y otros Medios" tabindex="0">
               <div class="tag-corner"><span class="tag-promo"><img src="https://cdn-gop.garenanow.com/gop/app/0000/100/067/point.png" alt="">PROMO</span></div>
-              <img src="https://cdn-gop.garenanow.com/gop/static/channel/0000/214/169/icon.png" alt="Efectivo"><div class="payment-method-name">Efectivo y otros Medios</div>
+              <img src="https://cdn-gop.garenanow.com/gop/static/channel/0000/214/169/icon.png" alt="Efectivo y otros Medios">
+              <div class="pm-text"><div class="pm-price"></div><div class="pm-dia"></div><div class="payment-method-name">Efectivo y otros Medios</div></div>
             </div>
-            <div class="payment-method">
+            <div class="payment-method" data-name="Razer Gold" tabindex="0">
               <div class="tag-corner"><span class="tag-promo"><img src="https://cdn-gop.garenanow.com/gop/app/0000/100/067/point.png" alt="">PROMO</span></div>
-              <img src="https://cdn-gop.garenanow.com/gop/static/channel/0000/214/003/icon.png" alt="Razer Gold"><div class="payment-method-name">Razer Gold</div>
+              <img src="https://cdn-gop.garenanow.com/gop/static/channel/0000/214/003/icon.png" alt="Razer Gold">
+              <div class="pm-text"><div class="pm-price"></div><div class="pm-dia"></div><div class="payment-method-name">Razer Gold</div></div>
             </div>
-            <div class="payment-method">
+            <div class="payment-method" data-name="PayPal" tabindex="0">
               <div class="tag-corner"><span class="tag-promo"><img src="https://cdn-gop.garenanow.com/gop/app/0000/100/067/point.png" alt="">PROMO</span></div>
-              <img src="https://cdn-gop.garenanow.com/gop/static/channel/0000/214/001/icon.png" alt="PayPal"><div class="payment-method-name">PayPal</div>
+              <img src="https://cdn-gop.garenanow.com/gop/static/channel/0000/214/001/icon.png" alt="PayPal">
+              <div class="pm-text"><div class="pm-price"></div><div class="pm-dia"></div><div class="payment-method-name">PayPal</div></div>
             </div>
-            <div class="payment-method">
+            <div class="payment-method" data-name="Google Pay" tabindex="0">
               <div class="tag-corner"><span class="tag-promo"><img src="https://cdn-gop.garenanow.com/gop/app/0000/100/067/point.png" alt="">PROMO</span></div>
-              <img src="https://cdn-gop.garenanow.com/gop/static/channel/0000/211/321/icon.png" alt="Google Pay"><div class="payment-method-name">Google Pay</div>
+              <img src="https://cdn-gop.garenanow.com/gop/static/channel/0000/211/321/icon.png" alt="Google Pay">
+              <div class="pm-text"><div class="pm-price"></div><div class="pm-dia"></div><div class="payment-method-name">Google Pay</div></div>
             </div>
           </div>
         </div>
@@ -358,14 +425,20 @@ footer{background:#272731;border-top:1px solid #11111C;padding:32px 20px;text-al
 <div class="bottom-bar" id="bottomBar">
   <div class="wrap">
     <div class="bottom-inner">
-      <div class="bar-info"><b id="barName">Tarjeta Semanal</b>Total: <span class="bar-price" id="barPrice">US$ 1.99</span></div>
-      <button class="buy-now-btn">
+      <div class="bar-info">
+        <div class="bar-popover" id="barPopover" hidden></div>
+        <div class="bar-line" id="barLine"><span>Tarjeta Semanal</span></div>
+        <div class="bar-total">Total: <span class="bar-price" id="barPrice">US$ 1.99</span></div>
+      </div>
+      <button class="buy-now-btn" id="buyBtn" type="button">
         <svg viewBox="0 0 80 80" fill="currentColor"><path d="M54.1 34.1C55.3 32.9 55.3 31 54.1 29.9C53 28.7 51.1 28.7 49.9 29.9L38 41.8 32.1 35.9C31 34.7 29.1 34.7 27.9 35.9C26.7 37 26.7 38.9 27.9 40.1L35.9 48.1C37.1 49.3 39 49.3 40.1 48.1L54.1 34.1Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M43.4 3.5c-2.1-1.2-4.7-1.2-6.8 0L8.1 19.4C6.2 20.5 5 22.5 5 24.7c.3 14.7 5.2 39 32 52.2 1.9.9 4.1.9 6 0 26.8-13.2 31.6-37.5 32-52.2 0-2.2-1.2-4.3-3.1-5.3L43.4 3.5ZM39.5 8.7c.3-.2.7-.2 1 0l28.5 15.9c-.3 13.7-4.8 35.2-28.6 46.9-.2.1-.5.1-.7 0C15.8 59.8 11.4 38.3 11 24.6l28.5-15.9Z"/></svg>
         Comprar ahora
       </button>
     </div>
   </div>
 </div>
+
+<div class="toast" id="toast" hidden></div>
 
 <footer>
   <p>Réplica de práctica. © Garena Online, todos los derechos reservados.</p>
@@ -375,14 +448,13 @@ footer{background:#272731;border-top:1px solid #11111C;padding:32px 20px;text-al
 </footer>
 
 <script>
-/* Carrusel: el banner activo queda centrado y los vecinos asoman a los lados */
+/* ===== Carrusel ===== */
 const carousel = document.getElementById('carousel');
 const track = document.getElementById('carouselTrack');
 const slides = [...track.children];
 const dots = document.querySelectorAll('#carouselDots span');
 const GAP = 18;
 let slideIndex = 0;
-
 function layout(){
   const sw = slides[0].getBoundingClientRect().width;
   const off = carousel.clientWidth / 2 - sw / 2 - slideIndex * (sw + GAP);
@@ -397,7 +469,7 @@ function resetAutoplay(){ clearInterval(autoplay); autoplay = setInterval(()=>mo
 window.addEventListener('resize', layout);
 layout();
 
-/* Tabs */
+/* ===== Tabs ===== */
 document.querySelectorAll('.tab-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
@@ -405,28 +477,177 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
   });
 });
 
-/* Resumen de compra (barra inferior) */
-const barName = document.getElementById('barName');
-const barPrice = document.getElementById('barPrice');
+/* ===== Estado ===== */
+const DIAMOND = 'https://cdn-gop.garenanow.com/gop/app/0000/100/067/point.png';
+const GAME_ICON = 'https://cdn-gop.garenanow.com/gop/app/0000/100/067/icon.png';
+/* Precios de práctica: solo 520 → 4.99 y Tarjeta Semanal → 1.99 vienen de la página original. Cambia el resto a tu gusto. */
+const PRICES = {100:0.99, 310:2.99, 520:4.99, 1060:9.99, 2180:19.99, 5600:49.99};
+const bonusOf = n => Math.round(n * 0.10);
+const fmtN = n => Number(n).toLocaleString('en-US');
+const fmtP = p => 'US$ ' + (p == null ? '—' : p.toFixed(2));
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+const state = {
+  sel: {name:'Tarjeta Semanal', price:1.99, amount:null, bonus:0},
+  logged:false, id:'', user:'', pm:null
+};
+
+const $ = id => document.getElementById(id);
+const barLine = $('barLine'), barPrice = $('barPrice'), barPopover = $('barPopover');
+const methods = [...document.querySelectorAll('.payment-method')];
+
+function renderBar(){
+  const s = state.sel;
+  if (s.amount){
+    barLine.innerHTML = '<img src="'+DIAMOND+'" alt="diamante"><span>'+fmtN(s.amount)+'</span><span class="bonus">+ '+fmtN(s.bonus)+'</span><button type="button" class="bar-toggle" id="barToggle" aria-label="Ver detalle">⌃</button>';
+    barPopover.innerHTML =
+      '<div class="pop-head"><span>Monto total</span><span><img src="'+DIAMOND+'" alt="">'+fmtN(s.amount+s.bonus)+'</span></div>'+
+      '<div class="pop-list">'+
+        '<div class="pop-row"><span>Precio inicial</span><b><img src="'+DIAMOND+'" alt="">'+fmtN(s.amount)+'</b></div>'+
+        '<div class="pop-row"><span>+ Bonus General</span><b><img src="'+DIAMOND+'" alt="">'+fmtN(s.bonus)+'</b></div>'+
+      '</div>';
+  } else {
+    barLine.innerHTML = '<span>'+esc(s.name)+'</span>';
+    barPopover.hidden = true;
+  }
+  barPrice.textContent = fmtP(s.price);
+}
+function renderMethods(){
+  const s = state.sel;
+  methods.forEach(m=>{
+    m.querySelector('.pm-price').textContent = fmtP(s.price);
+    m.querySelector('.pm-dia').innerHTML = s.amount
+      ? '<img src="'+DIAMOND+'" alt=""><span>'+fmtN(s.amount)+'</span><span class="bonus">+ '+fmtN(s.bonus)+'</span>' : '';
+    m.classList.toggle('selected', m.dataset.name === state.pm);
+  });
+}
+function render(){ renderBar(); renderMethods(); }
+
+barLine.addEventListener('click', e=>{
+  if (e.target.closest('#barToggle')) barPopover.hidden = !barPopover.hidden;
+});
+document.addEventListener('click', e=>{
+  if (!e.target.closest('.bar-info')) barPopover.hidden = true;
+});
+
 function clearSelection(){
   document.querySelectorAll('.denomination-btn,.offer-card').forEach(b=>b.classList.remove('active'));
 }
 document.querySelectorAll('.denomination-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
-    clearSelection();
-    btn.classList.add('active');
-    barName.textContent = Number(btn.dataset.amount).toLocaleString('en-US') + ' + ' + btn.dataset.bonus + ' Diamantes';
-    barPrice.textContent = 'US$ —';
+    clearSelection(); btn.classList.add('active');
+    const a = Number(btn.dataset.amount);
+    state.sel = {name:fmtN(a)+' Diamantes', price:PRICES[a] ?? null, amount:a, bonus:bonusOf(a)};
+    render();
   });
 });
 document.querySelectorAll('.offer-card').forEach(card=>{
   card.addEventListener('click', ()=>{
-    clearSelection();
-    card.classList.add('active');
-    barName.textContent = card.dataset.name;
-    barPrice.textContent = card.dataset.price ? 'US$ ' + card.dataset.price : 'US$ —';
+    clearSelection(); card.classList.add('active');
+    state.sel = {name:card.dataset.name, price:card.dataset.price ? Number(card.dataset.price) : null, amount:null, bonus:0};
+    render();
   });
 });
+methods.forEach(m=>{
+  const pick = ()=>{ state.pm = m.dataset.name; renderMethods(); };
+  m.addEventListener('click', pick);
+  m.addEventListener('keydown', e=>{ if (e.key==='Enter' || e.key===' '){ e.preventDefault(); pick(); }});
+});
+
+/* ===== Inicio de sesión con ID ===== */
+const avatar = $('avatar'), avatarOriginal = avatar.innerHTML;
+function login(){
+  const id = $('playerId').value.trim();
+  const err = $('idError');
+  if (!/^\d{5,}$/.test(id)){
+    err.textContent = 'Introduce un ID de jugador válido (solo números).';
+    err.hidden = false; return;
+  }
+  err.hidden = true;
+  state.logged = true; state.id = id; state.user = 'Jugador' + id.slice(-3);
+  $('accName').textContent = 'Nombre de usuario: ' + state.user;
+  $('accId').textContent = 'ID de jugador: ' + id;
+  $('loginSection').hidden = true;
+  $('accountSection').hidden = false;
+  avatar.innerHTML = '<img src="'+GAME_ICON+'" alt="Avatar">';
+}
+function logout(){
+  state.logged = false; state.id = ''; state.user = '';
+  $('playerId').value = '';
+  $('accountSection').hidden = true;
+  $('loginSection').hidden = false;
+  avatar.innerHTML = avatarOriginal;
+}
+$('loginBtn').addEventListener('click', login);
+$('playerId').addEventListener('keydown', e=>{ if (e.key==='Enter') login(); });
+$('logoutBtn').addEventListener('click', logout);
+
+/* ===== Aviso ===== */
+let toastTimer;
+function toast(msg){
+  const t = $('toast'); t.textContent = msg; t.hidden = false;
+  clearTimeout(toastTimer); toastTimer = setTimeout(()=>{ t.hidden = true; }, 3200);
+}
+
+/* ===== Comprar ahora → pestaña nueva ===== */
+function buildCheckout(){
+  const s = state.sel;
+  const product = s.amount ? fmtN(s.amount) + ' + ' + fmtN(s.bonus) + ' Diamantes' : s.name;
+  return '<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">'+
+  '<title>Confirmar compra · Free Fire</title><style>'+
+  '*{margin:0;padding:0;box-sizing:border-box}body{background:#1B1B25;color:rgba(255,255,255,.85);font:14px/1.5 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;min-height:100vh}'+
+  'header{background:#272731;border-bottom:1px solid rgba(255,255,255,.1);height:56px;display:flex;align-items:center;padding:0 16px}'+
+  'header b{color:#E41E26;font-weight:500;font-size:17px;margin-right:10px}header span{color:#fff;font-weight:600;border-left:1px solid rgba(255,255,255,.25);padding-left:10px}'+
+  '.wrap{max-width:850px;margin:0 auto;padding:32px 16px}h1{font-size:19px;color:rgba(255,255,255,.9);margin-bottom:16px}'+
+  '.card{max-width:464px;background:#272731;border-radius:6px;padding:16px;margin-bottom:20px}'+
+  '.acc{display:flex;align-items:center;gap:12px}.acc img{width:36px;height:36px;border-radius:50%;background:#fff}.acc b{display:block;color:#fff}.acc small{color:rgba(255,255,255,.6)}'+
+  '.row{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08)}.row:last-child{border:0}.row span:first-child{color:rgba(255,255,255,.6)}.row span:last-child{color:#fff;font-weight:600;text-align:right}'+
+  '.total span:last-child{color:#E4372E;font-size:16px}'+
+  '.actions{max-width:464px;display:flex;gap:12px}button{flex:1;height:44px;border-radius:5px;font-weight:700;font-size:14px;cursor:pointer;border:1px solid #E4372E}'+
+  '.pay{background:#E4372E;color:#fff}.pay:hover{background:#CD1214}.back{background:transparent;color:#fff;border-color:rgba(255,255,255,.3)}'+
+  '.note{max-width:464px;margin-top:16px;font-size:12px;color:rgba(255,255,255,.5)}'+
+  '</style></head><body><header><b>Garena</b><span>Centro Oficial de Recargas</span></header><div class="wrap">'+
+  '<h1>Confirmar compra</h1>'+
+  '<div class="card"><div class="acc"><img src="'+GAME_ICON+'" alt=""><div><b>Free Fire</b><small>'+esc(state.user)+' · ID '+esc(state.id)+'</small></div></div></div>'+
+  '<div class="card">'+
+    '<div class="row"><span>Producto</span><span>'+esc(product)+'</span></div>'+
+    '<div class="row"><span>Método de pago</span><span>'+esc(state.pm)+'</span></div>'+
+    '<div class="row total"><span>Total</span><span>'+fmtP(s.price)+'</span></div>'+
+  '</div>'+
+  '<div class="actions"><button class="back" onclick="window.close()">Volver</button><button class="pay" onclick="alert(\'Réplica de práctica: no se realiza ningún pago.\')">Pagar ahora</button></div>'+
+  '<p class="note">Réplica de práctica. Esta pantalla no procesa pagos reales.</p></div></body></html>';
+}
+function openCheckout(){
+  const html = buildCheckout();
+  let w = null;
+  try { w = window.open('', '_blank'); } catch(e) {}
+  if (w && w.document){
+    w.document.open(); w.document.write(html); w.document.close();
+  } else {
+    /* Si el navegador bloquea la pestaña, se muestra encima de la página */
+    const ov = document.createElement('div');
+    ov.className = 'checkout-overlay';
+    const fr = document.createElement('iframe'); fr.srcdoc = html;
+    const x = document.createElement('button'); x.textContent = '✕'; x.setAttribute('aria-label','Cerrar');
+    x.onclick = ()=> ov.remove();
+    ov.append(fr, x); document.body.appendChild(ov);
+  }
+}
+$('buyBtn').addEventListener('click', ()=>{
+  if (!state.logged){
+    toast('Inicia sesión con tu ID de jugador para continuar.');
+    const el = $('loginSection');
+    el.scrollIntoView({behavior:'smooth', block:'center'});
+    $('playerId').focus(); return;
+  }
+  if (!state.pm){
+    toast('Selecciona un método de pago.');
+    $('paymentSection').scrollIntoView({behavior:'smooth', block:'center'}); return;
+  }
+  openCheckout();
+});
+
+render();
 </script>
 </body>
 </html>
