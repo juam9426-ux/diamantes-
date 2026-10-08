@@ -185,20 +185,19 @@ header{
 .bottom-bar{
   position:fixed;bottom:0;left:0;right:0;z-index:15;
   background:#1B1B25;border-top:1.15px solid rgba(255,255,255,.1);
-  padding:12px 20px;
+  padding:14px 23px;
   display:flex;
-  flex-direction:column;
-  align-items:flex-start;justify-content:flex-start;gap:10px;
+  align-items:center;justify-content:space-between;gap:18px;
   transform:translateY(100%);transition:transform .3s ease;
 }
 .bottom-bar.show{transform:translateY(0)}
-.bottom-bar-total{display:flex;align-items:center;gap:8px;font-weight:bold;color:#fff;font-size:15px}
-.bottom-bar-total img{width:18px;height:18px}
-.bottom-bar-total .bonus{color:#FF7A00;font-size:13px}
+.bottom-bar-total{display:flex;align-items:center;gap:8px;font-weight:bold;color:#fff;font-size:16px}
+.bottom-bar-total img{width:20px;height:20px}
+.bottom-bar-total .bonus{color:#FF7A00;font-size:14px;margin-left:4px}
 .buy-now-btn{
-  background:#E4372E;color:#fff;border:none;padding:11px 26px;border-radius:6px;
-  font-weight:bold;cursor:pointer;font-size:15px;transition:background .2s;
-  display:flex;align-items:center;gap:8px;width:100%;justify-content:center;
+  background:#E4372E;color:#fff;border:none;padding:12px 28px;border-radius:6px;
+  font-weight:bold;cursor:pointer;font-size:16px;transition:background .2s;
+  display:flex;align-items:center;gap:8px;white-space:nowrap;flex-shrink:0;
 }
 .buy-now-btn:hover{background:#CD1214}
 .buy-now-btn svg{width:18px;height:18px}
