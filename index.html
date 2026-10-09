@@ -32,7 +32,7 @@ header{background:#272731;border-bottom:1px solid rgba(255,255,255,.1);height:56
 .avatar{width:28px;height:28px;border-radius:50%;overflow:hidden;cursor:pointer;flex-shrink:0}
 .avatar svg{width:100%;height:100%}
 
-/* ===== Carrusel (banner central con los vecinos asomando) ===== */
+/* ===== Carrusel ===== */
 .carousel-wrap{background:#151515;padding:18px 0;overflow:hidden}
 .carousel{position:relative}
 .carousel-track{display:flex;gap:18px;width:max-content;transition:transform .6s ease}
@@ -75,7 +75,7 @@ header{background:#272731;border-bottom:1px solid rgba(255,255,255,.1);height:56
 .security-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(0,0,0,.65);color:#fff;padding:3px 6px;border-radius:4px;border:1px solid rgba(255,255,255,.3);font-size:12px;font-weight:500;line-height:1.3}
 .security-badge svg{width:13px;height:13px;flex-shrink:0}
 
-/* ===== Secciones (de arriba hacia abajo) ===== */
+/* ===== Secciones ===== */
 .section{margin-bottom:32px}
 .half{max-width:417px}
 .section-title{font-size:19px;font-weight:bold;margin-bottom:12px;display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.85)}
@@ -169,7 +169,6 @@ footer{background:#272731;border-top:1px solid #11111C;padding:32px 20px;text-al
 }
 
 [hidden]{display:none !important}
-/* Cuenta (sesión iniciada) */
 .logout-btn{margin-left:auto;background:none;border:none;color:rgba(255,255,255,.7);font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:4px}
 .logout-btn:hover{opacity:.7}
 .account-card{display:flex;align-items:center;gap:12px;background:#272731;border-radius:6px;padding:12px}
@@ -179,48 +178,21 @@ footer{background:#272731;border-top:1px solid #11111C;padding:32px 20px;text-al
 .field-error{margin-top:8px;font-size:12px;color:#FF6B63}
 .avatar img{width:100%;height:100%;object-fit:cover;background:#fff;display:block}
 
-/* Métodos de pago: icono a la izquierda, precio y diamantes a la derecha */
-.payment-methods{grid-template-columns:repeat(3,1fr)}
-.payment-method{display:flex;align-items:center;gap:10px;padding:12px;min-height:80px;text-align:left}
-.payment-method img{margin:0;flex-shrink:0}
-.payment-method.selected{background:#2F232C;border:1px solid #E4372E}
-.pm-text{min-width:0;padding-top:4px}
-.pm-price{font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;white-space:nowrap}
-.pm-price:empty{display:none}
-.pm-dia{display:flex;align-items:center;gap:4px;font-size:12px;color:#fff}
-.pm-dia:empty{display:none}
-.pm-dia img{width:12px;height:12px}
-.pm-dia .bonus,.bar-line .bonus{color:#FF7A00}
-.payment-method-name{font-size:12px;font-weight:500;color:rgba(255,255,255,.65);margin-top:4px}
-.payment-method-name:first-child{font-size:13px;font-weight:600;color:#fff}
+.name-panel{position:fixed;top:66px;left:10px;z-index:40;width:190px;background:#272731;border:1px solid rgba(255,255,255,.15);border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.4);font-size:12px;color:#fff}
+.name-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 10px;cursor:pointer;font-weight:700;user-select:none}
+.name-head span:last-child{color:rgba(255,255,255,.6);font-size:11px}
+.name-body{padding:0 10px 10px}
+.name-body label{display:block;margin-bottom:5px;color:rgba(255,255,255,.65)}
+.name-row{display:flex;gap:6px}
+.name-row input{flex:1;min-width:0;height:30px;padding:0 8px;border-radius:4px;border:1px solid #393947;background:#353542;color:#fff;font-size:12px}
+.name-row input:focus{outline:none;border-color:#6F6F86}
+.name-row button{height:30px;padding:0 10px;border:none;border-radius:4px;background:#E4372E;color:#fff;font-size:12px;font-weight:700;cursor:pointer}
+.name-row button:hover{background:#CD1214}
+.name-hint{margin-top:6px;font-size:11px;color:rgba(255,255,255,.5);line-height:1.3}
+@media (max-width:640px){.name-panel{top:62px;left:6px;width:170px}}
 
-/* Barra inferior con detalle */
-.bar-info{position:relative}
-.bar-line{display:flex;align-items:center;justify-content:flex-end;gap:5px;font-size:14px;font-weight:700;color:#fff}
-.bar-line img{width:16px;height:16px}
-.bar-toggle{background:rgba(255,255,255,.1);border:none;color:rgba(255,255,255,.8);width:18px;height:18px;border-radius:50%;cursor:pointer;font-size:12px;line-height:18px;padding:0}
-.bar-total{margin-top:6px;font-size:13px;color:#fff}
-.bar-popover{position:absolute;right:0;bottom:calc(100% + 24px);width:320px;background:#2B2B36;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:14px;text-align:left;z-index:30;box-shadow:0 9px 28px 8px rgba(0,0,0,.25)}
-.pop-head,.pop-row{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.pop-head{font-size:14px;font-weight:700;color:#fff;margin-bottom:10px}
-.pop-list{background:#232330;border:1px solid rgba(255,255,255,.08);border-radius:5px;padding:10px;display:flex;flex-direction:column;gap:10px;font-size:12px;color:rgba(255,255,255,.85)}
-.pop-row b{display:inline-flex;align-items:center;gap:4px;font-weight:500}
-.pop-row img,.pop-head img{width:12px;height:12px}
-.pop-head span{display:inline-flex;align-items:center;gap:5px}
-
-/* Aviso */
 .toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#2B2B36;color:#fff;border:1px solid #E4372E;padding:10px 16px;border-radius:6px;font-size:13px;z-index:60;max-width:90vw;box-shadow:0 6px 20px rgba(0,0,0,.4)}
-.checkout-overlay{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;padding:16px}
-.checkout-overlay iframe{width:100%;max-width:980px;height:92vh;border:0;border-radius:8px;background:#1B1B25}
-.checkout-overlay button{position:absolute;top:14px;right:18px;background:#000a;border:1px solid #fff;color:#fff;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:16px}
-@media (max-width:640px){
-  .payment-methods{grid-template-columns:repeat(2,1fr);gap:10px}
-  .payment-method{padding:10px}
-  .payment-method img{width:44px;height:44px}
-  .bar-popover{width:min(320px,86vw)}
-}
 
-/* Ventanas emergentes */
 .modal{position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto}
 .modal-event{position:relative;width:min(440px,100%)}
 .modal-event a{display:block}
@@ -236,20 +208,6 @@ footer{background:#272731;border-top:1px solid #11111C;padding:32px 20px;text-al
 .btn-cancel:hover{background:rgba(228,55,46,.12)}
 .btn-exit{background:#E4372E;color:#fff}
 .btn-exit:hover{background:#CD1214}
-
-/* Panel pequeño para escribir el nombre del jugador */
-.name-panel{position:fixed;top:66px;left:10px;z-index:40;width:190px;background:#272731;border:1px solid rgba(255,255,255,.15);border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.4);font-size:12px;color:#fff}
-.name-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 10px;cursor:pointer;font-weight:700;user-select:none}
-.name-head span:last-child{color:rgba(255,255,255,.6);font-size:11px}
-.name-body{padding:0 10px 10px}
-.name-body label{display:block;margin-bottom:5px;color:rgba(255,255,255,.65)}
-.name-row{display:flex;gap:6px}
-.name-row input{flex:1;min-width:0;height:30px;padding:0 8px;border-radius:4px;border:1px solid #393947;background:#353542;color:#fff;font-size:12px}
-.name-row input:focus{outline:none;border-color:#6F6F86}
-.name-row button{height:30px;padding:0 10px;border:none;border-radius:4px;background:#E4372E;color:#fff;font-size:12px;font-weight:700;cursor:pointer}
-.name-row button:hover{background:#CD1214}
-.name-hint{margin-top:6px;font-size:11px;color:rgba(255,255,255,.5);line-height:1.3}
-@media (max-width:640px){.name-panel{top:62px;left:6px;width:170px}}
 </style>
 </head>
 <body>
@@ -428,32 +386,32 @@ footer{background:#272731;border-top:1px solid #11111C;padding:32px 20px;text-al
             <div class="payment-method" data-name="Nequi" tabindex="0">
               <div class="tag-corner"><span class="tag-promo"><img src="https://cdn-gop.garenanow.com/gop/app/0000/100/067/point.png" alt="">PROMO</span><span class="tag-popular">Popular</span></div>
               <img src="https://cdn-gop.garenanow.com/webmain/static/payment_center/co/menu/ebanx_co_ewallet_mb_1.png" alt="Nequi">
-              <div class="pm-text"><div class="pm-price"></div><div class="pm-dia"></div><div class="payment-method-name">Nequi</div></div>
+              <div class="payment-method-name">Nequi</div>
             </div>
             <div class="payment-method" data-name="Tarjeta de Crédito o Débito" tabindex="0">
               <div class="tag-corner"><span class="tag-promo"><img src="https://cdn-gop.garenanow.com/gop/app/0000/100/067/point.png" alt="">PROMO</span></div>
               <img src="https://cdn-gop.garenanow.com/webmain/static/payment_center/pe/pe_boa_creditcard_mb.png" alt="Tarjeta de Crédito o Débito">
-              <div class="pm-text"><div class="pm-price"></div><div class="pm-dia"></div><div class="payment-method-name">Tarjeta de Crédito o Débito</div></div>
+              <div class="payment-method-name">Tarjeta de Crédito o Débito</div>
             </div>
             <div class="payment-method" data-name="Efectivo y otros Medios" tabindex="0">
               <div class="tag-corner"><span class="tag-promo"><img src="https://cdn-gop.garenanow.com/gop/app/0000/100/067/point.png" alt="">PROMO</span></div>
-              <img src="https://cdn-gop.garenanow.com/gop/static/channel/0000/214/169/icon.png" alt="Efectivo y otros Medios">
-              <div class="pm-text"><div class="pm-price"></div><div class="pm-dia"></div><div class="payment-method-name">Efectivo y otros Medios</div></div>
+              <img src="https://cdn-gop.garenanow.com/webmain/static/payment_center/co/menu/ebanx_co_eft_desktop.png" alt="Efectivo y otros Medios">
+              <div class="payment-method-name">Efectivo y otros Medios</div>
             </div>
             <div class="payment-method" data-name="Razer Gold" tabindex="0">
               <div class="tag-corner"><span class="tag-promo"><img src="https://cdn-gop.garenanow.com/gop/app/0000/100/067/point.png" alt="">PROMO</span></div>
               <img src="https://cdn-gop.garenanow.com/gop/static/channel/0000/214/003/icon.png" alt="Razer Gold">
-              <div class="pm-text"><div class="pm-price"></div><div class="pm-dia"></div><div class="payment-method-name">Razer Gold</div></div>
+              <div class="payment-method-name">Razer Gold</div>
             </div>
             <div class="payment-method" data-name="PayPal" tabindex="0">
               <div class="tag-corner"><span class="tag-promo"><img src="https://cdn-gop.garenanow.com/gop/app/0000/100/067/point.png" alt="">PROMO</span></div>
               <img src="https://cdn-gop.garenanow.com/gop/static/channel/0000/214/001/icon.png" alt="PayPal">
-              <div class="pm-text"><div class="pm-price"></div><div class="pm-dia"></div><div class="payment-method-name">PayPal</div></div>
+              <div class="payment-method-name">PayPal</div>
             </div>
             <div class="payment-method" data-name="Google Pay" tabindex="0">
               <div class="tag-corner"><span class="tag-promo"><img src="https://cdn-gop.garenanow.com/gop/app/0000/100/067/point.png" alt="">PROMO</span></div>
               <img src="https://cdn-gop.garenanow.com/gop/static/channel/0000/211/321/icon.png" alt="Google Pay">
-              <div class="pm-text"><div class="pm-price"></div><div class="pm-dia"></div><div class="payment-method-name">Google Pay</div></div>
+              <div class="payment-method-name">Google Pay</div>
             </div>
           </div>
         </div>
@@ -466,7 +424,6 @@ footer{background:#272731;border-top:1px solid #11111C;padding:32px 20px;text-al
   <div class="wrap">
     <div class="bottom-inner">
       <div class="bar-info">
-        <div class="bar-popover" id="barPopover" hidden></div>
         <div class="bar-line" id="barLine"><span>Tarjeta Semanal</span></div>
         <div class="bar-total">Total: <span class="bar-price" id="barPrice">US$ 1.99</span></div>
       </div>
@@ -475,13 +432,6 @@ footer{background:#272731;border-top:1px solid #11111C;padding:32px 20px;text-al
         Comprar ahora
       </button>
     </div>
-  </div>
-</div>
-
-<div class="modal" id="eventModal" hidden>
-  <div class="modal-event">
-    <a href="https://pagostore.garena.com/event/6?app=100067" target="_blank" rel="noopener"><img src="https://cdn-gop.garenanow.com/gop/app/0000/100/067/event/0000/000/255/popup.png" alt="Nuevo conjunto en Ruleta de la Suerte"></a>
-    <button type="button" class="modal-close" id="eventClose" aria-label="Cerrar">✕</button>
   </div>
 </div>
 
@@ -535,10 +485,9 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
   });
 });
 
-/* ===== Estado ===== */
+/* ===== Estado Global ===== */
 const DIAMOND = 'https://cdn-gop.garenanow.com/gop/app/0000/100/067/point.png';
 const GAME_ICON = 'https://cdn-gop.garenanow.com/gop/app/0000/100/067/icon.png';
-/* Precios de práctica: solo 520 → 4.99 y Tarjeta Semanal → 1.99 vienen de la página original. Cambia el resto a tu gusto. */
 const PRICES = {100:0.99, 310:2.99, 520:4.99, 1060:9.99, 2180:19.99, 5600:49.99};
 const bonusOf = n => Math.round(n * 0.10);
 const fmtN = n => Number(n).toLocaleString('en-US');
@@ -551,42 +500,20 @@ const state = {
 };
 
 const $ = id => document.getElementById(id);
-const barLine = $('barLine'), barPrice = $('barPrice'), barPopover = $('barPopover');
+const barLine = $('barLine'), barPrice = $('barPrice');
 const methods = [...document.querySelectorAll('.payment-method')];
 
 function renderBar(){
   const s = state.sel;
   if (s.amount){
-    barLine.innerHTML = '<img src="'+DIAMOND+'" alt="diamante"><span>'+fmtN(s.amount)+'</span><span class="bonus">+ '+fmtN(s.bonus)+'</span><button type="button" class="bar-toggle" id="barToggle" aria-label="Ver detalle">⌃</button>';
-    barPopover.innerHTML =
-      '<div class="pop-head"><span>Monto total</span><span><img src="'+DIAMOND+'" alt="">'+fmtN(s.amount+s.bonus)+'</span></div>'+
-      '<div class="pop-list">'+
-        '<div class="pop-row"><span>Precio inicial</span><b><img src="'+DIAMOND+'" alt="">'+fmtN(s.amount)+'</b></div>'+
-        '<div class="pop-row"><span>+ Bonus General</span><b><img src="'+DIAMOND+'" alt="">'+fmtN(s.bonus)+'</b></div>'+
-      '</div>';
+    barLine.innerHTML = '<img src="'+DIAMOND+'" alt="diamante"><span>'+fmtN(s.amount)+'</span><span style="color:#FF7A00">+ '+fmtN(s.bonus)+'</span>';
   } else {
     barLine.innerHTML = '<span>'+esc(s.name)+'</span>';
-    barPopover.hidden = true;
   }
   barPrice.textContent = fmtP(s.price);
 }
-function renderMethods(){
-  const s = state.sel;
-  methods.forEach(m=>{
-    m.querySelector('.pm-price').textContent = fmtP(s.price);
-    m.querySelector('.pm-dia').innerHTML = s.amount
-      ? '<img src="'+DIAMOND+'" alt=""><span>'+fmtN(s.amount)+'</span><span class="bonus">+ '+fmtN(s.bonus)+'</span>' : '';
-    m.classList.toggle('selected', m.dataset.name === state.pm);
-  });
-}
-function render(){ renderBar(); renderMethods(); }
 
-barLine.addEventListener('click', e=>{
-  if (e.target.closest('#barToggle')) barPopover.hidden = !barPopover.hidden;
-});
-document.addEventListener('click', e=>{
-  if (!e.target.closest('.bar-info')) barPopover.hidden = true;
-});
+function render(){ renderBar(); }
 
 function clearSelection(){
   document.querySelectorAll('.denomination-btn,.offer-card').forEach(b=>b.classList.remove('active'));
@@ -607,12 +534,12 @@ document.querySelectorAll('.offer-card').forEach(card=>{
   });
 });
 methods.forEach(m=>{
-  const pick = ()=>{ state.pm = m.dataset.name; renderMethods(); };
+  const pick = ()=>{ state.pm = m.dataset.name; m.classList.add('selected'); methods.forEach(x=> x !== m && x.classList.remove('selected')); };
   m.addEventListener('click', pick);
   m.addEventListener('keydown', e=>{ if (e.key==='Enter' || e.key===' '){ e.preventDefault(); pick(); }});
 });
 
-/* ===== Nombre del jugador (panel pequeño) ===== */
+/* ===== Nombre del jugador ===== */
 let customName = '';
 try { customName = localStorage.getItem('playerName') || ''; } catch(e) {}
 const displayName = id => customName || ('Jugador' + String(id).slice(-3));
@@ -634,7 +561,7 @@ $('nameHead').addEventListener('click', ()=>{
   $('nameToggle').textContent = b.hidden ? '▸' : '▾';
 });
 
-/* ===== Inicio de sesión con ID ===== */
+/* ===== Inicio de sesión ===== */
 const avatar = $('avatar'), avatarOriginal = avatar.innerHTML;
 function login(){
   const id = $('playerId').value.trim();
@@ -650,7 +577,6 @@ function login(){
   $('loginSection').hidden = true;
   $('accountSection').hidden = false;
   avatar.innerHTML = '<img src="'+GAME_ICON+'" alt="Avatar">';
-  $('eventModal').hidden = false;
 }
 function logout(){
   state.logged = false; state.id = ''; state.user = '';
@@ -664,81 +590,221 @@ $('playerId').addEventListener('keydown', e=>{ if (e.key==='Enter') login(); });
 $('logoutBtn').addEventListener('click', ()=>{ $('logoutModal').hidden = false; });
 $('logoutCancel').addEventListener('click', ()=>{ $('logoutModal').hidden = true; });
 $('logoutConfirm').addEventListener('click', ()=>{ $('logoutModal').hidden = true; logout(); });
-$('eventClose').addEventListener('click', ()=>{ $('eventModal').hidden = true; });
-/* Cerrar al tocar el fondo oscuro o con Escape */
-['eventModal','logoutModal'].forEach(id=>{
-  $(id).addEventListener('click', e=>{ if (e.target.id === id) $(id).hidden = true; });
-});
-document.addEventListener('keydown', e=>{
-  if (e.key === 'Escape'){ $('eventModal').hidden = true; $('logoutModal').hidden = true; }
-});
+$('logoutModal').addEventListener('click', e=>{ if (e.target.id === 'logoutModal') $('logoutModal').hidden = true; });
+document.addEventListener('keydown', e=>{ if (e.key === 'Escape'){ $('logoutModal').hidden = true; }});
 
-/* ===== Aviso ===== */
-let toastTimer;
-function toast(msg){
-  const t = $('toast'); t.textContent = msg; t.hidden = false;
-  clearTimeout(toastTimer); toastTimer = setTimeout(()=>{ t.hidden = true; }, 3200);
-}
-
-/* ===== Comprar ahora → pestaña nueva ===== */
-function buildCheckout(){
+/* ===== COMPRA: Genera HTML y abre pestaña nueva ===== */
+function generateCheckoutHTML(){
   const s = state.sel;
   const product = s.amount ? fmtN(s.amount) + ' + ' + fmtN(s.bonus) + ' Diamantes' : s.name;
-  return '<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">'+
-  '<title>Confirmar compra · Free Fire</title><style>'+
-  '*{margin:0;padding:0;box-sizing:border-box}body{background:#1B1B25;color:rgba(255,255,255,.85);font:14px/1.5 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;min-height:100vh}'+
-  'header{background:#272731;border-bottom:1px solid rgba(255,255,255,.1);height:56px;display:flex;align-items:center;padding:0 16px}'+
-  'header b{color:#E41E26;font-weight:500;font-size:17px;margin-right:10px}header span{color:#fff;font-weight:600;border-left:1px solid rgba(255,255,255,.25);padding-left:10px}'+
-  '.wrap{max-width:850px;margin:0 auto;padding:20px 16px 32px}h1{font-size:19px;color:rgba(255,255,255,.9);margin-bottom:16px}'+
-  '.who{display:inline-flex;align-items:center;gap:6px;background:#272731;border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:3px 10px 3px 3px;margin-bottom:18px;font-size:12px;color:#fff;font-weight:600;max-width:100%}.who img{width:22px;height:22px;border-radius:50%;background:#fff;object-fit:cover;flex-shrink:0}.who span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}'+
-  '.card{max-width:464px;background:#272731;border-radius:6px;padding:16px;margin-bottom:20px}'+
-  '.acc{display:flex;align-items:center;gap:12px}.acc img{width:36px;height:36px;border-radius:50%;background:#fff}.acc b{display:block;color:#fff}.acc small{color:rgba(255,255,255,.6)}'+
-  '.row{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08)}.row:last-child{border:0}.row span:first-child{color:rgba(255,255,255,.6)}.row span:last-child{color:#fff;font-weight:600;text-align:right}'+
-  '.total span:last-child{color:#E4372E;font-size:16px}'+
-  '.actions{max-width:464px;display:flex;gap:12px}button{flex:1;height:44px;border-radius:5px;font-weight:700;font-size:14px;cursor:pointer;border:1px solid #E4372E}'+
-  '.pay{background:#E4372E;color:#fff}.pay:hover{background:#CD1214}.back{background:transparent;color:#fff;border-color:rgba(255,255,255,.3)}'+
-  '.note{max-width:464px;margin-top:16px;font-size:12px;color:rgba(255,255,255,.5)}'+
-  '</style></head><body><header><b>Garena</b><span>Centro Oficial de Recargas</span></header><div class="wrap">'+
-  '<div class="who" title="Jugador"><img src="'+GAME_ICON+'" alt=""><span>'+esc(state.user)+'</span></div>'+
-  '<h1>Confirmar compra</h1>'+
-  '<div class="card"><div class="acc"><img src="'+GAME_ICON+'" alt=""><div><b>Free Fire</b><small>ID de jugador: '+esc(state.id)+'</small></div></div></div>'+
-  '<div class="card">'+
-    '<div class="row"><span>Producto</span><span>'+esc(product)+'</span></div>'+
-    '<div class="row"><span>Método de pago</span><span>'+esc(state.pm)+'</span></div>'+
-    '<div class="row total"><span>Total</span><span>'+fmtP(s.price)+'</span></div>'+
-  '</div>'+
-  '<div class="actions"><button class="back" onclick="window.close()">Volver</button><button class="pay" onclick="alert(\'Réplica de práctica: no se realiza ningún pago.\')">Pagar ahora</button></div>'+
-  '<p class="note">Réplica de práctica. Esta pantalla no procesa pagos reales.</p></div></body></html>';
+  
+  return `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmar compra · Free Fire</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #1B1B25;
+      color: rgba(255,255,255,.85);
+      font: 14px/1.5 ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+      min-height: 100vh;
+    }
+    header {
+      background: #272731;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      height: 56px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+    }
+    header b { color: #E41E26; font-weight: 500; font-size: 17px; margin-right: 10px; }
+    header span { color: #fff; font-weight: 600; border-left: 1px solid rgba(255,255,255,.25); padding-left: 10px; }
+    .wrap { max-width: 850px; margin: 0 auto; padding: 20px 16px 32px; }
+    h1 { font-size: 19px; color: rgba(255,255,255,.9); margin-bottom: 16px; }
+    .who {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #272731;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 999px;
+      padding: 3px 10px 3px 3px;
+      margin-bottom: 18px;
+      font-size: 12px;
+      color: #fff;
+      font-weight: 600;
+      max-width: 100%;
+    }
+    .who img { width: 22px; height: 22px; border-radius: 50%; background: #fff; object-fit: cover; flex-shrink: 0; }
+    .who span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .card {
+      max-width: 464px;
+      background: #272731;
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    .acc {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .acc img { width: 36px; height: 36px; border-radius: 50%; background: #fff; }
+    .acc b { display: block; color: #fff; }
+    .acc small { color: rgba(255,255,255,.6); }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .row:last-child { border: 0; }
+    .row span:first-child { color: rgba(255,255,255,.6); }
+    .row span:last-child { color: #fff; font-weight: 600; text-align: right; }
+    .total span:last-child { color: #E4372E; font-size: 16px; }
+    .diamond-img { display: inline-block; width: 14px; height: 14px; margin-right: 4px; vertical-align: middle; }
+    .actions {
+      max-width: 464px;
+      display: flex;
+      gap: 12px;
+    }
+    button {
+      flex: 1;
+      height: 44px;
+      border-radius: 5px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      border: 1px solid #E4372E;
+    }
+    .pay {
+      background: #E4372E;
+      color: #fff;
+    }
+    .pay:hover {
+      background: #CD1214;
+    }
+    .back {
+      background: transparent;
+      color: #fff;
+      border-color: rgba(255,255,255,.3);
+    }
+    .back:hover {
+      background: rgba(255,255,255,.05);
+    }
+    .note {
+      max-width: 464px;
+      margin-top: 16px;
+      font-size: 12px;
+      color: rgba(255,255,255,.5);
+    }
+    footer {
+      background: #272731;
+      border-top: 1px solid #11111C;
+      padding: 32px 20px;
+      text-align: center;
+      color: rgba(255,255,255,.6);
+      font-size: 13px;
+    }
+    .footer-links { margin-top: 14px; }
+    .footer-links a { color: rgba(255,255,255,.6); text-decoration: none; margin: 0 12px; }
+  </style>
+</head>
+<body>
+  <header>
+    <b>Garena</b>
+    <span>Centro Oficial de Recargas</span>
+  </header>
+  <div class="wrap">
+    <div class="who">
+      <img src="${GAME_ICON}" alt="Avatar">
+      <span>${esc(state.user)}</span>
+    </div>
+    <h1>Confirmar compra</h1>
+    
+    <div class="card">
+      <div class="acc">
+        <img src="${GAME_ICON}" alt="Free Fire">
+        <div>
+          <b>Free Fire</b>
+          <small>ID de jugador: ${esc(state.id)}</small>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="row">
+        <span>Producto</span>
+        <span>${esc(product)}</span>
+      </div>
+      <div class="row">
+        <span>Método de pago</span>
+        <span>${esc(state.pm || 'No seleccionado')}</span>
+      </div>
+      <div class="row total">
+        <span>Total</span>
+        <span>${fmtP(s.price)}</span>
+      </div>
+    </div>
+    
+    <div class="actions">
+      <button class="back" onclick="window.close()">Volver</button>
+      <button class="pay" onclick="alert('✅ Réplica de práctica\\n\\nNo se realiza ningún pago real. Esta es una demostración de diseño.')">Pagar ahora</button>
+    </div>
+    
+    <p class="note">
+      ⚠️ Réplica de práctica. Esta pantalla no procesa pagos reales.
+    </p>
+  </div>
+  
+  <footer>
+    <p>© Garena Online. Todos los derechos reservados.</p>
+    <div class="footer-links">
+      <a href="#">Preguntas</a>
+      <a href="#">Help Center</a>
+      <a href="#">Términos y Condiciones</a>
+      <a href="#">Política de privacidad</a>
+    </div>
+  </footer>
+</body>
+</html>`;
 }
+
 function openCheckout(){
-  const html = buildCheckout();
-  let w = null;
-  try { w = window.open('', '_blank'); } catch(e) {}
-  if (w && w.document){
-    w.document.open(); w.document.write(html); w.document.close();
-  } else {
-    /* Si el navegador bloquea la pestaña, se muestra encima de la página */
-    const ov = document.createElement('div');
-    ov.className = 'checkout-overlay';
-    const fr = document.createElement('iframe'); fr.srcdoc = html;
-    const x = document.createElement('button'); x.textContent = '✕'; x.setAttribute('aria-label','Cerrar');
-    x.onclick = ()=> ov.remove();
-    ov.append(fr, x); document.body.appendChild(ov);
-  }
-}
-$('buyBtn').addEventListener('click', ()=>{
   if (!state.logged){
-    toast('Inicia sesión con tu ID de jugador para continuar.');
-    const el = $('loginSection');
-    el.scrollIntoView({behavior:'smooth', block:'center'});
-    $('playerId').focus(); return;
+    const msg = $('toast');
+    msg.textContent = '❌ Inicia sesión con tu ID de jugador para continuar.';
+    msg.hidden = false;
+    setTimeout(() => { msg.hidden = true; }, 3000);
+    $('loginSection').scrollIntoView({behavior:'smooth', block:'center'});
+    $('playerId').focus();
+    return;
   }
   if (!state.pm){
-    toast('Selecciona un método de pago.');
-    $('paymentSection').scrollIntoView({behavior:'smooth', block:'center'}); return;
+    const msg = $('toast');
+    msg.textContent = '❌ Selecciona un método de pago.';
+    msg.hidden = false;
+    setTimeout(() => { msg.hidden = true; }, 3000);
+    $('paymentSection').scrollIntoView({behavior:'smooth', block:'center'});
+    return;
   }
-  openCheckout();
-});
+  
+  const html = generateCheckoutHTML();
+  const blob = new Blob([html], {type: 'text/html;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  
+  try {
+    window.open(url, '_blank');
+  } catch (e) {
+    console.error('Error abriendo pestaña:', e);
+  }
+}
+
+$('buyBtn').addEventListener('click', openCheckout);
 
 render();
 </script>
